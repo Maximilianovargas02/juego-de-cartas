@@ -1,14 +1,18 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 public class FrmJuego extends JFrame {
+
+    JPanel pnlJugador1;
 
     public FrmJuego() {
         setSize(700, 250);
@@ -28,7 +32,7 @@ public class FrmJuego extends JFrame {
         tpJugadores.setBounds(10, 40, 650, 150);
         getContentPane().add(tpJugadores);
 
-        JPanel pnlJugador1 = new JPanel();
+        pnlJugador1 = new JPanel();
         pnlJugador1.setBackground(new Color(16, 139, 37));
         pnlJugador1.setLayout(null);
 
@@ -55,7 +59,11 @@ public class FrmJuego extends JFrame {
     }
 
     private void repartirCartas() {
+        pnlJugador1.removeAll();
+        Carta carta = new Carta(new Random());
+        carta.mostrar(pnlJugador1, 10, 10);
 
+        JOptionPane.showMessageDialog(null, carta.getNombre() + " " + carta.getPinta());
     }
 
     private void verificarJugador() {
