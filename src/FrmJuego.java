@@ -1,13 +1,6 @@
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class FrmJuego extends JFrame {
 
@@ -27,6 +20,10 @@ public class FrmJuego extends JFrame {
         JButton btnVerificar = new JButton("Verificar");
         btnVerificar.setBounds(120, 10, 100, 25);
         getContentPane().add(btnVerificar);
+
+        JButton btnPuntaje = new JButton("Mostrar Puntaje");
+        btnPuntaje.setBounds(230, 10, 150, 25);
+        getContentPane().add(btnPuntaje);
 
         tpJugadores = new JTabbedPane();
         tpJugadores.setBounds(10, 40, 650, 150);
@@ -54,6 +51,23 @@ public class FrmJuego extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 verificarJugador();
+            }
+        });
+
+        btnPuntaje.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int pestañaSeleccionada = tpJugadores.getSelectedIndex();
+                switch (pestañaSeleccionada) {
+                    case 0:
+                        int puntajeJugador1 = jugador1.calcularPuntaje();
+                        JOptionPane.showMessageDialog(null, "Puntaje de Martín Estrada Contreras: " + puntajeJugador1);
+                        break;
+                    case 1:
+                        int puntajeJugador2 = jugador2.calcularPuntaje();
+                        JOptionPane.showMessageDialog(null, "Puntaje de Raúl Vidal: " + puntajeJugador2);
+                        break;
+                }
             }
         });
     }
